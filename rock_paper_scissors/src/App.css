@@ -2,16 +2,27 @@
   text-align: center;
 }
 
-.App-logo {
+.player1Choice {
   height: 40vmin;
+  margin: 10px;
+  align-content: space-around;
   pointer-events: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.player2Choice {
+  height: 40vmin;
+  margin: 10px;
+  align-content: space-around;
+  transform: scaleX(-1);
+  pointer-events: none;
 }
+
+.buttons {
+  margin: 10px;
+  height: 50px;
+  width: 200px;
+}
+
 
 .App-header {
   background-color: #282c34;
@@ -28,11 +39,3 @@
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
