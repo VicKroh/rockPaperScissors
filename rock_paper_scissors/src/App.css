@@ -6,6 +6,7 @@
   height: 40vmin;
   margin: 10px;
   align-content: space-around;
+  transform: scaleX(-1);
   pointer-events: none;
 }
 
@@ -13,7 +14,6 @@
   height: 40vmin;
   margin: 10px;
   align-content: space-around;
-  transform: scaleX(-1);
   pointer-events: none;
 }
 
