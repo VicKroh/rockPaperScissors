@@ -7,20 +7,16 @@ import White from './white.png';
 
 import './App.css';
 
-let winner: number = -1;
+enum lookUpGameState {
+  win = "You Win!",
+  lose = "You Lose :(",
+  draw = "Draw, try again!"
+};
 
 
-
-const lookUpGameState = [
-  "You Win!",
-  "You Lose :(",
-  "Draw"
-]
-
-interface choiceObject {
-  id: number, name: string, icon: any, losesTo: number
+function getRandom(max: number): number {
+  return Math.floor(Math.random() * (max));
 }
-
 
 const lookUpChoices = [
   { id: 0, name: "Rock", icon: Rock, losesTo: 1 },
@@ -38,23 +34,6 @@ function displayChoices(player1: any, player2: any): ComponentState {
   </div>)
 }
 
-/* function displayWinner() {
-  if (winner > 0) {
-    return "Choose a Weapon above!";
-  } else if (winner === 0) {
-    return "Tie";
-  } else if (winner === 1) {
-    return "Player wins!";
-  } else {
-    return "Bot wins!"
-  }
-} */
-
-function calculateWinner(playerChoice: number, computerChoice: number): number {
-
-  return 0;
-}
-
 
 function App() {
   const [player1, setPlayer1] = useState(lookUpChoices.find(input => input.id === 3));
@@ -62,44 +41,41 @@ function App() {
 
   const [gameState, setGameState]: any = useState();
 
-  useEffect(() => {
-
-  })
+  /*   useEffect(() => {
+  
+    }) */
 
   function handleClick(choice: number) {
 
-        
-    const computerchoice: any = lookUpChoices[Math.floor(Math.random() * (lookUpChoices.length - 1))]; // -1 to prevent choosing nothing
+    const computerchoice: any = lookUpChoices[getRandom(lookUpChoices.length - 1)]; // -1 to prevent choosing nothing
 
     setComputer(computerchoice);
-    console.log("computer: " + computerchoice.id)
-
-
 
     if (choice === lookUpChoices.length - 1) {
-      choice = Math.floor(Math.random() * (lookUpChoices.length - 1))
+      choice = getRandom(lookUpChoices.length - 1);
     }
 
     const userChoice: any = lookUpChoices.find(input => input.id === choice);
     setPlayer1(userChoice);
-    console.log("player: " + userChoice.id)
-
-
-
+    // console.log("player: " + userChoice.id)
 
     if (userChoice.id === computerchoice.id) {
-      setGameState("draw")
-      console.log("wincondition: " + computerchoice.id + " " + userChoice.id + " = Draw")
-
+      setGameState(lookUpGameState.draw)
+      //  console.log("wincondition: " + computerchoice.id + " " + userChoice.id + " = Draw")
     } else if (userChoice.losesTo === computerchoice.id) {
-      console.log("wincondition: " + userChoice.id + " " + computerchoice.id + " = lose")
-
-      setGameState("You Lose")
+      //  console.log("wincondition: " + userChoice.id + " " + computerchoice.id + " = lose")
+      setGameState(lookUpGameState.lose)
     } else if (computerchoice.losesTo === userChoice.id) {
-      console.log("wincondition: " + computerchoice.id + " " + userChoice.id + " = win")
-
-      setGameState("You Win")
+      //  console.log("wincondition: " + computerchoice.id + " " + userChoice.id + " = win")
+      setGameState(lookUpGameState.win)
     }
+  }
+
+  function reset() : void {
+    setComputer(lookUpChoices[lookUpChoices.length - 1])
+    setPlayer1(lookUpChoices[lookUpChoices.length - 1])
+    setGameState(null)
+
   }
 
   /* 
@@ -124,11 +100,11 @@ function App() {
           <button className="buttons" onClick={() => (handleClick(3))}>Random</button>
         </div>
 
-        {displayChoices(player1, computer)}
+        <div>{displayChoices(player1, computer)}</div>
 
-        {gameState}
+        <div className="gameState">{gameState}</div>
 
-
+        <button className="buttons" onClick={() => (reset())}>Reset Game</button>
 
       </header>
     </div>

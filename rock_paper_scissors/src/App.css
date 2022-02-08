@@ -4,6 +4,8 @@
 
 .player1Choice {
   height: 40vmin;
+  border: 3px;
+  border-color: lightgray;
   margin: 10px;
   align-content: space-around;
   transform: scaleX(-1);
@@ -12,6 +14,8 @@
 
 .player2Choice {
   height: 40vmin;
+  border: 3px;
+  border-color: lightgray;
   margin: 10px;
   align-content: space-around;
   pointer-events: none;
@@ -23,19 +27,25 @@
   width: 200px;
 }
 
+.gameState {
+  height: 50px;
+  width: 250px;
+  margin: 10px;
+  text-align: center;
+  text-decoration: underline;
+  color: rgb(77, 77, 77);
+
+}
 
 .App-header {
-  background-color: #282c34;
+  background-color: white;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: rgb(77, 77, 77);
 }
 
-.App-link {
-  color: #61dafb;
-}
 
