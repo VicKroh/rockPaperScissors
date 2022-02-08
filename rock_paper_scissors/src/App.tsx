@@ -1,44 +1,82 @@
-import React from 'react';
-import scissors from './scissors.png';
+import React, { useState, useEffect } from 'react';
+
+import Scissors from './scissors.png';
+import Rock from './rock.png';
+import Paper from './paper.png';
+import White from './white.png';
+
 import './App.css';
+import { LookupFunction } from 'net';
 
-const noOfChoices : number = 3;
-
-let winner : number = -1;
-
+let winner: number = -1;
 
 
-interface lookUpChoice  {
-    0: "scissors",
-    1: "Rock",
-    2: "Paper"
+
+const lookUpWinner = {
+  "paper": "scissors",
+  "scissors": "Rock",
+  "rock": "Paper"
 }
 
-function calculateWinner(player1: string) {
-  const computerchoice : number = Math.floor(Math.random() * noOfChoices);
+const lookUpChoices = [
+  { id: 0, name: "White", icon: White },
+  { id: 1, name: "Rock", icon: Rock },
+  { id: 2, name: "Paper", icon: Paper },
+  { id: 3, name: "scissors", icon: Scissors }
 
+]
+
+function calculateWinner(player1: string): any {
+
+
+  return 0;
 }
 
 function displayChoices(player1: string, player2: string) {
   <div>
-    <img src={scissors} className="player1Choice" alt="logo" />
-    <img src={scissors} className="player2Choice" alt="logo" />
+    <img src={Scissors} className="player1Choice" alt="logo" />
+    <img src={Scissors} className="player2Choice" alt="logo" />
   </div>
 }
 
-function displayWinner(){
-  if( winner > 0){
-    return <div>Choose a Weapon above!</div>;
-  } else if (winner === 0){
-    return <div>Tie</div>;
-  } else if (winner === 1){
+function displayWinner() {
+  if (winner > 0) {
+    return "Choose a Weapon above!";
+  } else if (winner === 0) {
+    return "Tie";
+  } else if (winner === 1) {
     return "Player wins!";
   } else {
     return "Bot wins!"
   }
 }
 
+
+
 function App() {
+  const [player1, setPlayer1] = useState(lookUpChoices.find(input => input.id == 0));
+  const [computer, setComputer] = useState(lookUpChoices.find(input => input.id == 0));
+
+  const [gameState, setGameState] = useState(null);
+
+
+
+  useEffect(() => {
+    const computerchoice: any = lookUpChoices[Math.floor(Math.random() * lookUpChoices.length)];
+    setComputer(computerchoice);
+  })
+
+
+  function handleClick(choice: number) {
+
+    const userChoice: any = lookUpChoices.find(input => input.id == choice);
+    setPlayer1(userChoice);
+  }
+
+  function renderIcons(choice: any) {
+    const Component = choice.icon;
+    return <Component />
+  }
   return (
     <div className="App">
       <header className="App-header">
@@ -48,18 +86,21 @@ function App() {
           Pick your weapon:
         </p>
         <div>
-          <button className="buttons" onClick={() => calculateWinner("rock")}>Rock</button>
-          <button className="buttons" onClick={() => calculateWinner("paper")}>Paper</button>
-          <button className="buttons" onClick={() => calculateWinner("scissors")}>Scissors</button>
-          <button className="buttons" onClick={() => calculateWinner("Random")}>Random</button>
+          <button className="buttons" onClick={() => (handleClick(1))}>Rock</button>
+          <button className="buttons" onClick={() => (handleClick(2))}>Paper</button>
+          <button className="buttons" onClick={() => (handleClick(3))}>Scissors</button>
+          <button className="buttons" onClick={() => (handleClick(4))}>Random</button>
         </div>
 
+    
         <div>
-          <img src={scissors} className="player1Choice" alt="logo" />
-          <img src={scissors} className="player2Choice" alt="logo" />
+          <img src={White} className="player1Choice" alt="logo" />
+          <img src={White} className="player2Choice" alt="logo" />
         </div>
+
 
         <div> {() => displayWinner()} </div>
+
       </header>
     </div>
   );
