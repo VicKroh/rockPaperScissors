@@ -1,4 +1,4 @@
-import React, { useState, useEffect, ComponentState } from 'react';
+import React, { useState, ComponentState } from 'react';
 
 import Scissors from './scissors.png';
 import Rock from './rock.png';
@@ -13,7 +13,6 @@ enum lookUpGameState {
   draw = "Draw, try again!"
 };
 
-
 function getRandom(max: number): number {
   return Math.floor(Math.random() * (max));
 }
@@ -22,10 +21,8 @@ const lookUpChoices = [
   { id: 0, name: "Rock", icon: Rock, losesTo: 1 },
   { id: 1, name: "Paper", icon: Paper, losesTo: 2 },
   { id: 2, name: "scissors", icon: Scissors, losesTo: 0 },
-
-  { id: 3, name: "White", icon: White, losesTo: null } // TODO workaround?
+  { id: 3, name: "White", icon: White, losesTo: null }
 ]
-
 
 function displayChoices(player1: any, player2: any): ComponentState {
   return (<div>
@@ -34,16 +31,11 @@ function displayChoices(player1: any, player2: any): ComponentState {
   </div>)
 }
 
-
 function App() {
   const [player1, setPlayer1] = useState(lookUpChoices.find(input => input.id === 3));
   const [computer, setComputer] = useState(lookUpChoices.find(input => input.id === 3));
 
   const [gameState, setGameState]: any = useState();
-
-  /*   useEffect(() => {
-  
-    }) */
 
   function handleClick(choice: number) {
 
@@ -57,16 +49,12 @@ function App() {
 
     const userChoice: any = lookUpChoices.find(input => input.id === choice);
     setPlayer1(userChoice);
-    // console.log("player: " + userChoice.id)
 
     if (userChoice.id === computerchoice.id) {
       setGameState(lookUpGameState.draw)
-      //  console.log("wincondition: " + computerchoice.id + " " + userChoice.id + " = Draw")
     } else if (userChoice.losesTo === computerchoice.id) {
-      //  console.log("wincondition: " + userChoice.id + " " + computerchoice.id + " = lose")
       setGameState(lookUpGameState.lose)
     } else if (computerchoice.losesTo === userChoice.id) {
-      //  console.log("wincondition: " + computerchoice.id + " " + userChoice.id + " = win")
       setGameState(lookUpGameState.win)
     }
   }
@@ -77,13 +65,6 @@ function App() {
     setGameState(null)
 
   }
-
-  /* 
-    function renderIcons(choice: any) {
-      const Component = choice.icon;
-      return <Component />
-    } */
-
 
   return (
     <div className="App">
