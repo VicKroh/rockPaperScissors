@@ -1,5 +1,4 @@
-# Rock Paper Scissors
-## by Victor Krohmer
+# Rock Paper Scissors by Victor Krohmer
 
 This short ReadME explaines the usage of the webbased Application "Rock Paper Scissors" by Victor Krohmer.
 
