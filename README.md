@@ -14,3 +14,7 @@ To setup the app, download all files of this git repo. After choosing a director
 ## Controls
 
 As simple the rules of the game are as simple and self explaining are the controls. After starting the game, no player has yet made a choice, so the screen is mostly white. the player can either directly choose one of the options explained above by clicking one of the buttons "Rock", "Paper" or "Scissors", or let the computer decide by cicking the button "Random". In either case the computer will draw a Random option and both choices are displayed by two pictures. If the player wins his win counter above will be increased by one, otherwise he will gain a loss. Afterwards the player can either dirctly choose another option to try again, or reset the game to its initial state by clicking "Restart" at the bottom of the page.
+
+## Testing
+
+The provided test can be run via the ```npm run test``` command. 
