@@ -1,46 +1,20 @@
-# Getting Started with Create React App
+# Rock Paper Scissors by Victor Krohmer
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This short ReadME explaines the usage of the webbased Application "Rock Paper Scissors" by Victor Krohmer.
 
-## Available Scripts
+## The Game
 
-In the project directory, you can run:
+The Game Rock Paper Scissors is one of the first games of many peoles childhood. Since its perfecty balanced, no player has any advantages to other players. 
+the goal is, to win over another player using either a rock, a paper or a scissor, while the rock is beating the scissor, the scissor is beating the paper and the paper is beating the rock. If both players use the same tool, its a tie and nobody wins.
 
-### `npm start`
+## Getting started
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+To setup the app, download all files of this git repo. After choosing a directory, open up a terminal inside it and run the command ```npm install```. Npm will start downloading all needed modules to start the app. After the download finishes, the game can be started with the command ```npm start```. A browser window will open showing the GUI of the games initial state.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Controls
 
-### `npm test`
+As simple the rules of the game are as simple and self explaining are the controls. After starting the game, no player has yet made a choice, so the screen is mostly white. the player can either directly choose one of the options explained above by clicking one of the buttons "Rock", "Paper" or "Scissors", or let the computer decide by cicking the button "Random". In either case the computer will draw a Random option and both choices are displayed by two pictures. If the player wins his win counter above will be increased by one, otherwise he will gain a loss. Afterwards the player can either dirctly choose another option to try again, or reset the game to its initial state by clicking "Restart" at the bottom of the page.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Testing
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+The provided test can be run via the ```npm run test``` command. 
