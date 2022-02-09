@@ -18,22 +18,25 @@ function getRandom(max: number): number {
 }
 
 const lookUpChoices = [
-  { id: 0, name: "Rock", icon: Rock, losesTo: 1 },
-  { id: 1, name: "Paper", icon: Paper, losesTo: 2 },
+  { id: 0, name: "rock", icon: Rock, losesTo: 1 },
+  { id: 1, name: "paper", icon: Paper, losesTo: 2 },
   { id: 2, name: "scissors", icon: Scissors, losesTo: 0 },
-  { id: 3, name: "White", icon: White, losesTo: null }
+  { id: 3, name: "white", icon: White, losesTo: null }
 ]
 
 function displayChoices(player1: any, player2: any): ComponentState {
   return (<div>
-    <img src={player1.icon} className="player1Choice" alt="logo" />
-    <img src={player2.icon} className="player2Choice" alt="logo" />
-  </div>)
+    <img src={player1.icon} className="player1Choice" alt={`logo-${player1.name}`} /> 
+    <img src={player2.icon} className="player2Choice" alt={`logo-${player2.name}`} />
+  </div>) // ` for string literal to use variable names
 }
 
 function App() {
   const [player1, setPlayer1] = useState(lookUpChoices.find(input => input.id === 3));
   const [computer, setComputer] = useState(lookUpChoices.find(input => input.id === 3));
+
+  const [wins, setWins] = useState(0);
+  const [losses, setLosses] = useState(0);
 
   const [gameState, setGameState]: any = useState();
 
@@ -51,19 +54,23 @@ function App() {
     setPlayer1(userChoice);
 
     if (userChoice.id === computerchoice.id) {
-      setGameState(lookUpGameState.draw)
+      setGameState(lookUpGameState.draw);
+
     } else if (userChoice.losesTo === computerchoice.id) {
-      setGameState(lookUpGameState.lose)
-    } else if (computerchoice.losesTo === userChoice.id) {
-      setGameState(lookUpGameState.win)
+      setGameState(lookUpGameState.lose);
+      setLosses(losses + 1);
+    } else {
+      setGameState(lookUpGameState.win);
+      setWins(wins + 1);
     }
   }
 
-  function reset() : void {
-    setComputer(lookUpChoices[lookUpChoices.length - 1])
-    setPlayer1(lookUpChoices[lookUpChoices.length - 1])
-    setGameState(null)
-
+  function reset(): void {
+    setComputer(lookUpChoices[lookUpChoices.length - 1]);
+    setPlayer1(lookUpChoices[lookUpChoices.length - 1]);
+    setGameState(null);
+    setWins(0);
+    setLosses(0);
   }
 
   return (
@@ -80,7 +87,7 @@ function App() {
           <button className="buttons" onClick={() => (handleClick(2))}>Scissors</button>
           <button className="buttons" onClick={() => (handleClick(3))}>Random</button>
         </div>
-
+        <div>Wins: {wins} Losses: {losses}</div>
         <div>{displayChoices(player1, computer)}</div>
 
         <div className="gameState">{gameState}</div>
